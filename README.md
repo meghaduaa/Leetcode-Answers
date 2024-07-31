@@ -28,7 +28,7 @@ nums2.length == n
 -106 <= nums1[i], nums2[i] <= 106
 
 # python3
-class Solution:
+"class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         def f(i: int, j: int, k: int) -> int:
             if i >= m:
@@ -45,7 +45,7 @@ class Solution:
         m, n = len(nums1), len(nums2)
         a = f(0, 0, (m + n + 1) // 2)
         b = f(0, 0, (m + n + 2) // 2)
-        return (a + b) / 2
+        return (a + b) / 2"
 
 
 
