@@ -1,0 +1,52 @@
+The set [1, 2, 3, ..., n] contains a total of n! unique permutations.
+By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
+"123"
+"132"
+"213"
+"231"
+"312"
+"321"
+Given n and k, return the kth permutation sequence.
+Example 1:
+Input: n = 3, k = 3
+Output: "213"
+Example 2:
+Input: n = 4, k = 9
+Output: "2314"
+Example 3:
+Input: n = 3, k = 1
+Output: "123"
+Constraints:
+1 <= n <= 9
+1 <= k <= n!
+#cpp solution
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(n<1||n>9) return "";
+        if(k<1||k>factorial(n)) return "";
+        string result;
+        vector<int> index(n,0);
+        vector<int> res;
+        int kk=k-1;
+        for(int i=n-1;i>=0;i--){
+            while(kk>=factorial(i)){
+                index[i]++;
+                kk -=factorial(i);
+            }
+        }
+        for(int i=0;i<n;i++) res.push_back(i+1);
+        for(int i=n-1;i>=0;i--){
+            result +=(char)(res[index[i]]+'0');
+            res.erase(res.begin()+index[i]);
+        }
+        return result;
+    }
+    int factorial(int n){
+        int f=1;
+        for(int i=1;i<=n;i++) f *=i;
+        return f;
+    }
+};
